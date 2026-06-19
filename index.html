@@ -455,20 +455,39 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sa
 </div>
 
 <script>
+var _ref = (new URLSearchParams(window.location.search).get('ref') || 'direct');
+var _SBURL = 'https://vdbpawmmynbtebzinxuu.supabase.co/rest/v1/';
+var _SBKEY = 'sb_publishable_f6fL-A3TuCbWJjdmsMrOnQ_0B6S6_lF';
+function _sbPost(table, body) {
+  fetch(_SBURL + table, {
+    method:'POST',
+    headers:{'Content-Type':'application/json','apikey':_SBKEY,'Prefer':'return=minimal'},
+    body: JSON.stringify(body)
+  }).catch(function(){});
+}
 (function(){
   try {
-    var ref = new URLSearchParams(window.location.search).get('ref') || 'direct';
-    fetch('https://vdbpawmmynbtebzinxuu.supabase.co/rest/v1/partner_visits', {
-      method:'POST',
-      headers:{
-        'Content-Type':'application/json',
-        'apikey':'sb_publishable_f6fL-A3TuCbWJjdmsMrOnQ_0B6S6_lF',
-        'Prefer':'return=minimal'
-      },
-      body: JSON.stringify({ ref: ref, user_agent: navigator.userAgent.slice(0,200) })
-    }).catch(function(){});
+    _sbPost('partner_visits', { ref: _ref, user_agent: navigator.userAgent.slice(0,200) });
   } catch(e) {}
 })();
+document.addEventListener('click', function(e) {
+  try {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.href || '';
+    if (!href || href.charAt(0) === '#' || href.indexOf('#') === 0) return;
+    try { if (new URL(href).hostname === window.location.hostname) return; } catch(ex) {}
+    var labelEls = a.querySelectorAll('.pl-label, h4');
+    var label = '';
+    for (var i = 0; i < labelEls.length; i++) {
+      if (getComputedStyle(labelEls[i]).display !== 'none') { label = labelEls[i].textContent.trim(); break; }
+    }
+    if (!label) label = (a.textContent || href).trim().replace(/\s+/g,' ').slice(0, 80);
+    var card = a.closest('.proj-card');
+    var project = card ? (card.id || 'general') : 'general';
+    _sbPost('partner_clicks', { ref: _ref, link_label: label, project: project, link_url: href.slice(0,300) });
+  } catch(ex) {}
+});
 function getShow(el) {
   var cls = el.className || '';
   if (cls.includes('hero-site')) return 'inline-flex';

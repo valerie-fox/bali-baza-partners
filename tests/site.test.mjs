@@ -17,9 +17,17 @@ assert.match(heightsCard, /from \$143,000/, 'The Heights English entry price mus
 assert.match(heightsCard, /Q2 2027/, 'The Heights completion must be Q2 2027');
 assert.equal((html.match(/id="btn-(?:ru|en)"/g) || []).length, 2, 'the visible RU/EN switch must remain in the page header');
 assert.equal((html.match(/class="pc-stats mini-stats"/g) || []).length, 2, 'delivered projects must use the same structured metric treatment as active projects');
-assert.match(html, /<span class="stat-val">2<\/span>[\s\S]*?<span class="stat-val">\$99k<\/span>/, 'Gate 11 must surface the remaining inventory and entry price as metrics');
-assert.match(html, /<span class="stat-val">2BR<\/span>[\s\S]*?<span class="stat-val">\$130k<\/span>[\s\S]*?<span class="stat-val">\$5k<\/span>/, 'Sunset must surface format, entry price and agent commission as metrics');
+assert.match(html, /<span class="stat-val">2<\/span>[\s\S]*?<span class="[^"]*stat-val[^"]*">\$99k<\/span>/, 'Gate 11 must surface the remaining inventory and entry price as metrics');
+assert.match(html, /<span class="stat-val">2BR<\/span>[\s\S]*?<span class="[^"]*stat-val[^"]*">\$130k<\/span>[\s\S]*?<span class="[^"]*stat-val[^"]*">\$5k<\/span>/, 'Sunset must surface format, entry price and agent commission as metrics');
 assert.match(html, /@media\(max-width:1280px\) and \(min-width:901px\)[\s\S]*?grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/, 'mid-size desktop cards must reduce metrics to three columns before values become cramped');
+
+const heroTag = html.match(/<div class="[^"]*hero[^"]*">/)?.[0] ?? '';
+assert.match(heroTag, /\bcompact-hero\b/, 'the page header must use the compact hero treatment so project cards enter the first viewport');
+const moneyValues = [...html.matchAll(/<span class="([^"]*stat-val[^"]*)">([^<]*\$[^<]*)<\/span>/g)];
+assert.ok(moneyValues.length >= 9, 'all visible project prices and commissions must be represented as metric values');
+assert.ok(moneyValues.every(match => match[1].split(/\s+/).includes('money-value')), 'every monetary metric must opt into the non-wrapping amount style');
+assert.match(html, /\.money-value\{[^}]*white-space:nowrap!important/, 'monetary metrics must never wrap across lines');
+assert.match(html, /@media\(max-width:620px\)\{[\s\S]*?\.project-card-unified \.pc-stats:not\(\.mini-stats\)\{grid-template-columns:repeat\(2,minmax\(0,1fr\)\)\}[\s\S]*?\.project-card-unified \.pc-stats:not\(\.mini-stats\) \.stat:nth-child\(5\)\{grid-column:1\/-1\}/, 'mobile active-project metrics must return to two columns and give the final metric the full row');
 
 function makeElement(className = '', tagName = 'DIV') {
   const attrs = new Map();

@@ -305,13 +305,35 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   .app-shell{padding:8px}.hero{padding:16px 14px 28px;border-radius:28px}.logo-mark{height:31px}.lang-switch{padding:4px}.lang-btn{min-width:50px;padding:9px 13px}.hero-kicker{margin-top:52px}.hero h1{font-size:43px}.hero-facts{gap:7px}.scroll-nav{width:100%;max-width:100%}.gen-group{gap:8px}.projects-grid{gap:8px}.projects-grid>.proj-card.project-card-unified,#heights.project-card-unified,.projects-grid>.proj-mini.project-card-unified{padding:20px;border-radius:24px}.projects-grid>.proj-card.project-card-unified,#heights.project-card-unified{grid-template-columns:1fr}.project-card-unified .pc-name,.project-card-unified .pm-name{font-size:24px}.project-card-unified .pc-stats,.project-card-unified:nth-child(-n+2) .pc-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.project-card-unified .stat:nth-child(5){grid-column:1/-1}.project-card-unified .stat-val{font-size:19px}.project-card-unified .pm-links{grid-template-columns:1fr}.bottom-row{margin-bottom:24px}
 }
 </style>
+<style id="crm-partner-visual-system-v4">
+/* Compact first viewport and consistent, non-wrapping project metrics. */
+.compact-hero{min-height:0;padding:20px 28px 24px}
+.compact-hero .hero-kicker{margin:30px 0 10px}
+.compact-hero h1{max-width:760px;margin-bottom:8px;font-size:clamp(42px,4.4vw,62px);line-height:.98}
+.compact-hero .hero-sub{font-size:15px;line-height:1.45}
+.compact-hero .hero-facts{margin-top:18px}
+.scroll-nav{margin-top:10px}
+.sec-label{padding-top:38px}
+.project-card-unified .pc-stats,.project-card-unified:nth-child(-n+2) .pc-stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+.project-card-unified .stat:nth-child(5){grid-column:span 2}
+.project-card-unified .stat-val{font-size:clamp(22px,1.75vw,27px);line-height:1;font-weight:700;letter-spacing:-.04em;white-space:nowrap}
+.money-value{white-space:nowrap!important;font-size:clamp(22px,1.75vw,27px)!important}
+.project-card-unified .mini-stats{grid-template-columns:repeat(3,minmax(0,1fr))!important}.project-card-unified .mini-stats .stat:nth-child(n){grid-column:auto!important}
+@media(max-width:900px){
+  .compact-hero{padding:16px 18px 22px}.compact-hero .hero-kicker{margin-top:34px}.compact-hero h1{font-size:clamp(38px,7vw,50px)}.sec-label{padding-top:34px}
+}
+@media(max-width:620px){
+  .compact-hero{padding:14px 14px 20px}.compact-hero .hero-kicker{margin:28px 0 9px}.compact-hero h1{font-size:36px;line-height:.98}.compact-hero .hero-sub{font-size:13px}.compact-hero .hero-facts{margin-top:15px}.compact-hero .hero-fact{padding:7px 10px}.compact-hero .hero-fact:nth-child(3){display:none}.sec-label{padding-top:32px}.project-card-unified .stat-val,.money-value{font-size:21px!important}
+  .project-card-unified .pc-stats:not(.mini-stats){grid-template-columns:repeat(2,minmax(0,1fr))}.project-card-unified .pc-stats:not(.mini-stats) .stat{padding-left:6px;padding-right:6px}.project-card-unified .pc-stats:not(.mini-stats) .money-value.en-only{font-size:19px!important}.project-card-unified .pc-stats:not(.mini-stats) .stat:nth-child(4) .stat-val{font-size:19px!important}.project-card-unified .pc-stats:not(.mini-stats) .stat:nth-child(4) .stat-val.en-only{font-size:15.5px!important}.project-card-unified .pc-stats:not(.mini-stats) .stat:nth-child(5){grid-column:1/-1}
+}
+</style>
 </head>
 <body>
 <a class="skip-link ru-only" href="#general">К материалам</a><a class="skip-link en-only" href="#general">Skip to materials</a>
 <div class="app-shell">
 <main class="page" id="main">
 
-<div class="hero">
+<div class="hero compact-hero">
   <div class="hero-photo"></div><div class="hero-fade"></div>
   <div class="hero-top">
     <img class="logo-mark" src="assets/logo-full.png" alt="Baza Bali">
@@ -385,7 +407,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   <div class="pc-stats">
     <div class="stat "><span class="stat-val">58</span><span class="stat-lbl ru-only">юнитов</span><span class="stat-lbl en-only">units</span></div>
     <div class="stat "><span class="stat-val">30+30</span><span class="stat-lbl ru-only">лет лизхолд</span><span class="stat-lbl en-only">yr leasehold</span><span class="stat-sub ru-only">27 на ключах</span><span class="stat-sub en-only">27 at keys</span></div>
-    <div class="stat "><span class="stat-val ru-only">от $92 500</span><span class="stat-val en-only">from $92,500</span><span class="stat-lbl ru-only">вход</span><span class="stat-lbl en-only">entry price</span></div>
+    <div class="stat "><span class="stat-val money-value ru-only">от $92 500</span><span class="stat-val money-value en-only">from $92,500</span><span class="stat-lbl ru-only">вход</span><span class="stat-lbl en-only">entry price</span></div>
     <div class="stat g"><span class="stat-val ru-only">~14% / год</span><span class="stat-val en-only">~14% / year</span><span class="stat-lbl ru-only">ROI</span><span class="stat-lbl en-only">ROI</span></div>
     <div class="stat "><span class="stat-val">Q2 2027</span><span class="stat-lbl ru-only">сдача</span><span class="stat-lbl en-only">completion</span></div>
   </div>
@@ -446,7 +468,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   <div class="pc-stats">
     <div class="stat "><span class="stat-val">18</span><span class="stat-lbl ru-only">вилл</span><span class="stat-lbl en-only">villas</span></div>
     <div class="stat "><span class="stat-val">25+20+10</span><span class="stat-lbl ru-only">лет лизхолд</span><span class="stat-lbl en-only">yr leasehold</span><span class="stat-sub ru-only">25 на ключах</span><span class="stat-sub en-only">25 at keys</span></div>
-    <div class="stat "><span class="stat-val ru-only">от $537 000</span><span class="stat-val en-only">from $537,000</span><span class="stat-lbl ru-only">вход</span><span class="stat-lbl en-only">entry price</span></div>
+    <div class="stat "><span class="stat-val money-value ru-only">от $537 000</span><span class="stat-val money-value en-only">from $537,000</span><span class="stat-lbl ru-only">вход</span><span class="stat-lbl en-only">entry price</span></div>
     <div class="stat g"><span class="stat-val ru-only">до 16% / год</span><span class="stat-val en-only">up to 16% / year</span><span class="stat-lbl ru-only">ROI</span><span class="stat-lbl en-only">ROI</span></div>
     <div class="stat "><span class="stat-val">Q2 2027</span><span class="stat-lbl ru-only">сдача</span><span class="stat-lbl en-only">completion</span></div>
   </div>
@@ -501,7 +523,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   <div class="pc-stats">
     <div class="stat "><span class="stat-val">105</span><span class="stat-lbl ru-only">юнитов</span><span class="stat-lbl en-only">units</span></div>
     <div class="stat "><span class="stat-val">30+30</span><span class="stat-lbl ru-only">лет лизхолд</span><span class="stat-lbl en-only">yr leasehold</span><span class="stat-sub ru-only">29 на ключах</span><span class="stat-sub en-only">29 at keys</span></div>
-    <div class="stat "><span class="stat-val ru-only">от $143 000</span><span class="stat-val en-only">from $143,000</span><span class="stat-lbl ru-only">вход</span><span class="stat-lbl en-only">entry price</span></div>
+    <div class="stat "><span class="stat-val money-value ru-only">от $143 000</span><span class="stat-val money-value en-only">from $143,000</span><span class="stat-lbl ru-only">вход</span><span class="stat-lbl en-only">entry price</span></div>
     <div class="stat g"><span class="stat-val ru-only">до 16,2% / год</span><span class="stat-val en-only">up to 16.2% / year</span><span class="stat-lbl ru-only">ROI</span><span class="stat-lbl en-only">ROI</span></div>
     <div class="stat "><span class="stat-val">Q2 2027</span><span class="stat-lbl ru-only">сдача</span><span class="stat-lbl en-only">completion</span></div>
   </div>
@@ -558,7 +580,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
     <div class="pm-desc en-only">Earning from day one. 2 apartments left from $99k.</div>
     <div class="pc-stats mini-stats">
       <div class="stat"><span class="stat-val">2</span><span class="stat-lbl ru-only">апартамента</span><span class="stat-lbl en-only">apartments left</span></div>
-      <div class="stat g"><span class="stat-val">$99k</span><span class="stat-lbl ru-only">цена</span><span class="stat-lbl en-only">entry price</span></div>
+      <div class="stat g"><span class="stat-val money-value">$99k</span><span class="stat-lbl ru-only">цена</span><span class="stat-lbl en-only">entry price</span></div>
       <div class="stat"><span class="stat-val ru-only">Готов</span><span class="stat-val en-only">Ready</span><span class="stat-lbl ru-only">статус</span><span class="stat-lbl en-only">status</span></div>
     </div>
     <div class="pm-links">
@@ -598,8 +620,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
     <div class="pm-desc en-only">Resale: 2BR villas with pool from $130k. Agent commission $5,000.</div>
     <div class="pc-stats mini-stats">
       <div class="stat"><span class="stat-val">2BR</span><span class="stat-lbl ru-only">формат виллы</span><span class="stat-lbl en-only">villa format</span></div>
-      <div class="stat g"><span class="stat-val">$130k</span><span class="stat-lbl ru-only">цена</span><span class="stat-lbl en-only">entry price</span></div>
-      <div class="stat"><span class="stat-val">$5k</span><span class="stat-lbl ru-only">комиссия агенту</span><span class="stat-lbl en-only">agent commission</span></div>
+      <div class="stat g"><span class="stat-val money-value">$130k</span><span class="stat-lbl ru-only">цена</span><span class="stat-lbl en-only">entry price</span></div>
+      <div class="stat"><span class="stat-val money-value">$5k</span><span class="stat-lbl ru-only">комиссия агенту</span><span class="stat-lbl en-only">agent commission</span></div>
     </div>
     <div class="pm-links">
       <a class="pm-link" href="https://drive.google.com/drive/folders/1KoymPpnRzmGu1yeNTz2XX5QQS36Wp-0d" target="_blank" rel="noopener noreferrer">

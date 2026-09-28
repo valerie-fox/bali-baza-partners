@@ -7,8 +7,19 @@ const script = html.match(/<script>([\s\S]*?)<\/script>/)?.[1];
 assert.ok(script, 'the partner hub script must be present');
 const generalAnchor = html.match(/<[^>]+id="general"[^>]*>/)?.[0] ?? '';
 assert.ok(generalAnchor && !generalAnchor.includes('ru-only') && !generalAnchor.includes('en-only'), 'general materials anchor must remain available in every language');
-const railTargets = [...html.matchAll(/class="rail-link[^"]*" href="#([^"]+)"/g)].map(match => match[1]);
-assert.deepEqual(railTargets, ['general', 'kedungu', 'origins', 'heights', 'other'], 'desktop workspace rail must expose the primary partner-hub sections in order');
+assert.equal(/<aside\b[^>]*class="[^"]*workspace-rail/.test(html), false, 'the partner hub must not render a sidebar');
+assert.equal(/<div\b[^>]*class="[^"]*footer\b/.test(html), false, 'the partner hub must not render the removed footer');
+assert.equal([...html.matchAll(/<div class="[^"]*\bproject-card-unified\b[^"]*"/g)].length, 5, 'all five residential projects must use the same card component');
+
+const heightsCard = html.match(/<div class="[^"]*project-card-unified[^"]*" id="heights">([\s\S]*?)(?=<div class="[^"]*project-card-unified|<div class="bottom-row")/)?.[1] ?? '';
+assert.match(heightsCard, /от \$143 000/, 'The Heights Russian entry price must be $143k');
+assert.match(heightsCard, /from \$143,000/, 'The Heights English entry price must be $143k');
+assert.match(heightsCard, /Q2 2027/, 'The Heights completion must be Q2 2027');
+assert.equal((html.match(/id="btn-(?:ru|en)"/g) || []).length, 2, 'the visible RU/EN switch must remain in the page header');
+assert.equal((html.match(/class="pc-stats mini-stats"/g) || []).length, 2, 'delivered projects must use the same structured metric treatment as active projects');
+assert.match(html, /<span class="stat-val">2<\/span>[\s\S]*?<span class="stat-val">\$99k<\/span>/, 'Gate 11 must surface the remaining inventory and entry price as metrics');
+assert.match(html, /<span class="stat-val">2BR<\/span>[\s\S]*?<span class="stat-val">\$130k<\/span>[\s\S]*?<span class="stat-val">\$5k<\/span>/, 'Sunset must surface format, entry price and agent commission as metrics');
+assert.match(html, /@media\(max-width:1280px\) and \(min-width:901px\)[\s\S]*?grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/, 'mid-size desktop cards must reduce metrics to three columns before values become cramped');
 
 function makeElement(className = '', tagName = 'DIV') {
   const attrs = new Map();

@@ -327,6 +327,39 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   .project-card-unified .pc-stats:not(.mini-stats){grid-template-columns:repeat(2,minmax(0,1fr))}.project-card-unified .pc-stats:not(.mini-stats) .stat{padding-left:6px;padding-right:6px}.project-card-unified .pc-stats:not(.mini-stats) .money-value.en-only{font-size:19px!important}.project-card-unified .pc-stats:not(.mini-stats) .stat:nth-child(4) .stat-val{font-size:19px!important}.project-card-unified .pc-stats:not(.mini-stats) .stat:nth-child(4) .stat-val.en-only{font-size:15.5px!important}.project-card-unified .pc-stats:not(.mini-stats) .stat:nth-child(5){grid-column:1/-1}
 }
 </style>
+<style id="crm-partner-visual-system-v5">
+/* One metric-tile grid, top-aligned content, no orphan rows. */
+.projects-grid{grid-auto-rows:auto}
+@media(min-width:901px){
+  #heights.project-card-unified{grid-column:1/-1!important;grid-template-columns:repeat(4,minmax(0,1fr))}
+  #heights.project-card-unified .pc-link{grid-column:auto!important}
+  #heights.project-card-unified .pc-link.link-wide{grid-column:span 2!important}
+  #heights .pc-stats{grid-template-columns:repeat(6,minmax(0,1fr))!important}
+  #heights .pc-stats:not(.mini-stats) .stat:nth-child(n+4){grid-column:span 3!important}
+}
+.project-card-unified .pc-link.link-wide{grid-column:1/-1!important}
+.project-card-unified .pc-stats{grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:8px;padding:14px 0 12px;align-items:stretch}
+.project-card-unified .pc-stats .stat{grid-column:span 2!important}
+.project-card-unified .pc-stats:not(.mini-stats) .stat:nth-child(n+4){grid-column:span 3!important}
+.project-card-unified .pc-stats.mini-stats .stat{grid-column:span 2!important}
+.project-card-unified .stat{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:0;min-height:100px;padding:16px 16px 14px;text-align:left}
+.project-card-unified .stat-val{display:block;min-height:26px;font-size:clamp(20px,1.6vw,24px)!important;line-height:26px;white-space:nowrap}
+.project-card-unified .stat-lbl{display:block;margin-top:8px;font-size:11px;line-height:14px;white-space:normal}
+.project-card-unified .stat-sub{display:block;margin-top:2px;font-size:10px;line-height:13px;white-space:normal}
+.project-card-unified .pc-link,.project-card-unified .pm-link{min-height:54px;align-items:center}
+.project-card-unified>div[style*="display:inline-block"]{margin:18px 0 0!important}
+.project-card-unified .pm-links{margin-top:auto;padding-top:12px}
+.projects-grid>.proj-mini.project-card-unified .mini-stats{margin-bottom:0}
+@media(max-width:620px){
+  .project-card-unified .pc-stats:not(.mini-stats){grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .project-card-unified .pc-stats:not(.mini-stats) .stat,.project-card-unified .pc-stats:not(.mini-stats) .stat:nth-child(n+4){grid-column:auto!important}
+  .project-card-unified .pc-stats:not(.mini-stats) .stat:nth-child(5){grid-column:1/-1!important}
+  .project-card-unified .pc-stats.mini-stats{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  .project-card-unified .pc-stats.mini-stats .stat{grid-column:auto!important;padding:14px 10px 12px}
+  .project-card-unified .stat{min-height:92px;padding:14px 12px 12px}
+  .project-card-unified .pc-link.link-wide{grid-column:1/-1!important}
+}
+</style>
 </head>
 <body>
 <a class="skip-link ru-only" href="#general">К материалам</a><a class="skip-link en-only" href="#general">Skip to materials</a>
@@ -736,6 +769,12 @@ function setLang(lang) {
   try { localStorage.setItem('partner_lang', lang); } catch(e) {}
   document.querySelectorAll('.ru-only').forEach(function(el){ el.style.display = lang==='en' ? 'none' : ''; });
   document.querySelectorAll('.en-only').forEach(function(el){ el.style.display = lang==='en' ? getShow(el) : 'none'; });
+  document.querySelectorAll('.project-card-unified').forEach(function(card){
+    if (!card.querySelectorAll) return;
+    var links = Array.prototype.filter.call(card.querySelectorAll('.pc-link'), function(a){ return a.style.display !== 'none'; });
+    links.forEach(function(a){ a.classList.remove('link-wide'); });
+    if (links.length % 2 === 1) links[links.length-1].classList.add('link-wide');
+  });
 }
 try { setLang(localStorage.getItem('partner_lang') === 'en' ? 'en' : 'ru'); } catch(e) { setLang('ru'); }
 </script>

@@ -359,6 +359,11 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   .project-card-unified .stat{min-height:92px;padding:14px 12px 12px}
   .project-card-unified .pc-link.link-wide{grid-column:1/-1!important}
 }
+/* Every metric value: one size, one weight, one spacing. */
+#main .project-card-unified .pc-stats .stat .stat-val{font-size:clamp(18px,1.5vw,24px)!important;line-height:26px!important;font-weight:700!important;letter-spacing:-.03em!important;white-space:nowrap!important}
+#main .project-card-unified .pc-stats .stat .stat-lbl{font-size:11px!important;line-height:14px!important;font-weight:500!important;letter-spacing:0!important}
+#main .project-card-unified .pc-stats .stat .stat-sub{font-size:11px!important;line-height:14px!important;letter-spacing:0!important}
+@media(max-width:620px){#main .project-card-unified .pc-stats .stat .stat-val{font-size:19px!important}}
 </style>
 </head>
 <body>

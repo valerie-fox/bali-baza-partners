@@ -365,6 +365,44 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 #main .project-card-unified .pc-stats .stat .stat-sub{font-size:11px!important;line-height:14px!important;letter-spacing:0!important}
 @media(max-width:620px){#main .project-card-unified .pc-stats .stat .stat-val{font-size:19px!important}}
 </style>
+<style id="crm-partner-visual-system-v6">
+/* Preview-style pass: photo hero, status pill in the card header, emoji icons, key metrics first. Links stay separate. */
+.hero{background:#232326}
+.hero::before{display:none}
+.hero-photo{display:block!important;left:44%;opacity:1;background-position:center 55%;filter:saturate(.8) contrast(1.04);z-index:0}
+.hero-fade{display:block!important;z-index:1;background:linear-gradient(90deg,#232326 0%,#232326 36%,rgba(35,35,38,.86) 50%,rgba(35,35,38,.25) 74%,rgba(35,35,38,.1) 100%),linear-gradient(0deg,rgba(35,35,38,.5),transparent 40%)}
+.hero-top,.hero-kicker,.hero h1,.hero-sub,.hero-facts{position:relative;z-index:2}
+.hero h1{font-size:clamp(52px,6.4vw,92px);line-height:.95;letter-spacing:-.065em}
+.hero-kicker{letter-spacing:.2em}
+.project-card-unified{position:relative}
+.project-card-unified .pc-emoji,.project-card-unified .pm-emoji{font-size:22px!important;background:var(--panel-soft)!important}
+.project-card-unified .pc-emoji::before,.project-card-unified .pm-emoji::before{content:none!important}
+.project-card-unified .pc-loc,.project-card-unified .pm-loc{letter-spacing:.12em}
+.project-card-unified .pc-desc{min-height:0;padding-top:16px}
+.project-card-unified .pbg-banner{position:absolute;top:30px;right:26px;margin:0;padding:8px 14px;border-radius:999px;border:0;background:#2f4a3c;gap:0}
+.project-card-unified .pbg-check,.project-card-unified .pbg-sub{display:none}
+.project-card-unified .pbg-title{font-size:12px;font-weight:700;color:#b9e6cb;white-space:nowrap}
+.project-card-unified .pbg-title::before{content:'✓ '}
+.proj-mini.project-card-unified>div[style*="display:inline-block"]{position:absolute;top:30px;right:26px;margin:0!important;padding:8px 14px!important;border-radius:999px!important;background:var(--panel-soft)!important;color:#e8e8ec!important;font-size:12px!important}
+.projects-grid>.proj-card.project-card-unified .pc-stats{grid-template-columns:repeat(6,minmax(0,1fr))!important}
+.projects-grid>.proj-card.project-card-unified .stat{grid-column:span 3!important;min-height:84px;justify-content:flex-end}
+.projects-grid>.proj-card.project-card-unified .stat:nth-child(3){order:1;grid-column:span 2!important}
+.projects-grid>.proj-card.project-card-unified .stat:nth-child(4){order:2;grid-column:span 2!important}
+.projects-grid>.proj-card.project-card-unified .stat:nth-child(5){order:3;grid-column:span 2!important}
+.projects-grid>.proj-card.project-card-unified .stat:nth-child(1){order:4}
+.projects-grid>.proj-card.project-card-unified .stat:nth-child(2){order:5}
+@media(min-width:701px){
+  #heights.project-card-unified .pc-stats{grid-template-columns:repeat(5,minmax(0,1fr))!important}
+  #heights.project-card-unified .pc-stats .stat:nth-child(n){grid-column:span 1!important}
+}
+@media(max-width:700px){
+  .hero-photo{left:0;opacity:.4}
+  .hero-fade{background:linear-gradient(180deg,rgba(35,35,38,.2),#232326 82%)}
+  .project-card-unified .pbg-banner,.proj-mini.project-card-unified>div[style*="display:inline-block"]{position:static;width:fit-content;margin:14px 0 0!important}
+  .projects-grid>.proj-card.project-card-unified .stat:nth-child(n){grid-column:span 3!important}
+  .projects-grid>.proj-card.project-card-unified .stat:nth-child(3){grid-column:1/-1!important}
+}
+</style>
 </head>
 <body>
 <a class="skip-link ru-only" href="#general">К материалам</a><a class="skip-link en-only" href="#general">Skip to materials</a>
@@ -613,7 +651,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
       <div class="pm-emoji" style="background:#f3eeff;">🏙</div>
       <div class="pm-name">Gate 11</div><div class="pm-loc">📍 <span class="ru-only">Керобокан</span><span class="en-only">Kerobokan</span></div>
     </div>
-    <div style="display:inline-block;background:#e8f9ef;color:#1a7a43;font-size:10px;font-weight:700;padding:3px 10px;border-radius:10px;margin:6px 14px 0;">✅ <span class="ru-only">Сдан</span><span class="en-only">Delivered</span></div>
+    <div style="display:inline-block;background:#e8f9ef;color:#1a7a43;font-size:10px;font-weight:700;padding:3px 10px;border-radius:10px;margin:6px 14px 0;"><span class="ru-only">Сдан</span><span class="en-only">Delivered</span></div>
     <div class="pm-desc ru-only">Доход с первого дня. Осталось 2 апартамента по $99k.</div>
     <div class="pm-desc en-only">Earning from day one. 2 apartments left from $99k.</div>
     <div class="pc-stats mini-stats">
@@ -653,7 +691,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
       <div class="pm-emoji" style="background:#fff8e1;">🌅</div>
       <div class="pm-name">Sunset Village</div><div class="pm-loc">📍 <span class="ru-only">Керобокан</span><span class="en-only">Kerobokan</span></div>
     </div>
-    <div style="display:inline-block;background:#e8f9ef;color:#1a7a43;font-size:10px;font-weight:700;padding:3px 10px;border-radius:10px;margin:6px 14px 0;">✅ <span class="ru-only">Сдан</span><span class="en-only">Delivered</span></div>
+    <div style="display:inline-block;background:#e8f9ef;color:#1a7a43;font-size:10px;font-weight:700;padding:3px 10px;border-radius:10px;margin:6px 14px 0;"><span class="ru-only">Сдан</span><span class="en-only">Delivered</span></div>
     <div class="pm-desc ru-only">Перепродажа: виллы 2BR с бассейном от $130k. Комиссия агенту $5,000.</div>
     <div class="pm-desc en-only">Resale: 2BR villas with pool from $130k. Agent commission $5,000.</div>
     <div class="pc-stats mini-stats">
